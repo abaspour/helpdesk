@@ -1,0 +1,71 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+     <changeSet author="Admin (generated)" id="700975-04">
+        <createSequence sequenceName="SEQ_IMAGE_NUMBER"/>
+    </changeSet>
+	<changeSet author="Admin (generated)" id="1567838084890-14">
+        <createSequence sequenceName="SEQ_DCC"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1567838084890-15">
+        <createSequence sequenceName="SEQ_INSTRUCTION"/>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1567838084890-16">
+        <createTable tableName="TBL_DCC">
+            <column name="ID" type="NUMBER(19, 0)">
+                <constraints primaryKey="true" primaryKeyName="TBL_DCCPK"/>
+            </column>
+            <column name="c_created_by" type="VARCHAR2(255 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="d_created_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="c_last_modified_by" type="VARCHAR2(255 CHAR)"/>
+            <column name="d_last_modified_date" type="TIMESTAMP"/>
+            <column name="n_version" type="NUMBER(10, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="c_DESCRIPTION" type="VARCHAR2(4000 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="c_DOCUMENT_TYPE" type="VARCHAR2(60 CHAR)"/>
+            <column name="c_FILE_NAME" type="VARCHAR2(100 CHAR)"/>
+            <column name="c_FILE_NEW_NAME" type="VARCHAR2(100 CHAR)"/>
+            <column name="n_TBL_ID1" type="NUMBER(19, 0)"/>
+            <column name="n_TBL_ID2" type="NUMBER(19, 0)"/>
+            <column name="c_TBL_NAME1" type="VARCHAR2(100 CHAR)"/>
+            <column name="c_TBL_NAME2" type="VARCHAR2(100 CHAR)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="Admin (generated)" id="1567838084890-17">
+        <createTable tableName="TBL_INSTRUCTION">
+            <column name="ID" type="NUMBER(19, 0)">
+                <constraints primaryKey="true" primaryKeyName="TBL_INSTRUCTIONPK"/>
+            </column>
+            <column name="c_created_by" type="VARCHAR2(255 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="d_created_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="c_last_modified_by" type="VARCHAR2(255 CHAR)"/>
+            <column name="d_last_modified_date" type="TIMESTAMP"/>
+            <column name="n_version" type="NUMBER(10, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DISABLE_DATE" type="VARCHAR2(200 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RUN_DATE" type="VARCHAR2(200 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TITLE_Instruction" type="VARCHAR2(4000 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    </databaseChangeLog>

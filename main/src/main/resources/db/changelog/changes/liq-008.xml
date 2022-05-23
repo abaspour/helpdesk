@@ -1,0 +1,56 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+ <changeSet id="700975-07" author="Mehdi">
+	 <dropView viewName="view_report" ></dropView>
+ </changeSet>
+
+	<changeSet id="700975-08" author="Mehdi">
+		<createView viewName="view_report"><![CDATA[
+ SELECT r.id,
+       r.d_created_date,
+       r.c_created_by,
+       r.c_end_date,
+       r.c_request_description,
+       r.c_request_result,
+       case
+           when r.c_request_status = '0' then 'جدید'
+           when r.c_request_status = '1' then 'دردست اقدام'
+           when r.c_request_status = '2' then 'پایان'
+           when r.c_request_status = '3' then 'لغوشده'
+           when r.c_request_status = '4' then 'درانتظارپاسخ'
+           when r.c_request_status = '5' then 'درانتظاردرخواست کننده'
+           else r.c_request_status
+       end c_request_status,
+       r.c_request_title,
+       s.c_system_type,
+       r.f_oa_user,
+       s.f_oa_app,
+       c_title,
+       u.c_first_name,
+       u.c_last_name,
+
+       to_char(r.D_REPLIER_DATE, 'yyyy/mm/dd HH24:MI:SS', 'nls_calendar=persian')       Last_REPLIER_DATE,
+       to_char(r.D_REQUESTER_DATE, 'yyyy/mm/dd HH24:MI:SS', 'nls_calendar=persian')     last_REQUESTER_DATE,
+
+       to_char(r.d_created_date, 'yyyy/mm/dd HH24:MI:SS', 'nls_calendar=persian')       created_date,
+       u_att.c_first_name                                                               reply_first_name,
+       r.c_created_by                                                                   request_username,
+       u_att.c_last_name                                                                reply_last_name,
+       r.f_system_type
+FROM tbl_support_request r
+         join tbl_system_type s on s.id = r.f_system_type
+         join tbl_oa_app a on a.id = s.f_oa_app
+         join tbl_oa_user u on u.id = r.f_oa_user
+         left join (select max(t.id) max_id, t.f_support_request, t.f_oa_user pasgo
+                    from tbl_request_attachment t
+                    group by t.f_support_request, t.f_oa_user) tt
+                    on tt.f_support_request = r.id and tt.pasgo != u.id
+         left join tbl_request_attachment att on att.id = max_id
+         left join tbl_oa_user u_att on u_att.id = pasgo
+]]></createView>
+	</changeSet>
+
+</databaseChangeLog>

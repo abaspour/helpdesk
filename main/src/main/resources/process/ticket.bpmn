@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="documentProcess" name="فرایند تایید سند" isExecutable="true">
+    <startEvent id="startevent1" name="Start" activiti:initiator="${username}">
+      <extensionElements>
+        <activiti:formProperty id="documentId" name="شناسه سند" type="long" required="true"></activiti:formProperty>
+        <activiti:formProperty id="documentCreator" name="ایجاد کننده ی سند" type="string" required="true"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="usertask1" name="بررسی سرپرست" activiti:assignee="devadmin">
+      <documentation> صادرکننده </documentation>
+      <extensionElements>
+        <activiti:formProperty id="documentId" name="شماره سند" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="documentCreatorName" name="ایجاد کننده ی سند" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="recomExpert" name="توضیح کارشناس" type="enum" expression="${ execution.getVariable('recomExpert')==null ? 'doNotRender101'  : recomExpert }" writable="false">
+          <activiti:value id="SHOWPROPERTY_TYPE" name="textArea"></activiti:value>
+          <activiti:value id="SHOWPROPERTY_width" name="500"></activiti:value>
+          <activiti:value id="SHOWPROPERTY_height" name="60"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="recomSarparast" name="توضیحات ارجاع" type="enum">
+          <activiti:value id="SHOWPROPERTY_TYPE" name="textArea"></activiti:value>
+          <activiti:value id="SHOWPROPERTY_width" name="500"></activiti:value>
+          <activiti:value id="SHOWPROPERTY_height" name="60"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="REJECT" name="REJECT" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="REJECTVAL" name="rejectval" type="string" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow58" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <userTask id="usertask2" name="بررسی 1سرپرست" activiti:assignee="devadmin">
+      <documentation> صادرکننده 1</documentation>
+      <extensionElements>
+        <activiti:formProperty id="documentId" name="شماره سند" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="documentCreatorName" name="ایجاد کننده ی سند" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="recomExpert" name="توضیح کارشناس" type="enum" expression="${ execution.getVariable('recomExpert')==null ? 'doNotRender101'  : recomExpert }" writable="false">
+          <activiti:value id="SHOWPROPERTY_TYPE" name="textArea"></activiti:value>
+          <activiti:value id="SHOWPROPERTY_width" name="500"></activiti:value>
+          <activiti:value id="SHOWPROPERTY_height" name="60"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="recomSarparast" name="توضیحات ارجاع" type="enum">
+          <activiti:value id="SHOWPROPERTY_TYPE" name="textArea"></activiti:value>
+          <activiti:value id="SHOWPROPERTY_width" name="500"></activiti:value>
+          <activiti:value id="SHOWPROPERTY_height" name="60"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="REJECT" name="REJECT" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="REJECTVAL" name="rejectval" type="string" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow59" sourceRef="usertask2" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow60" sourceRef="usertask1" targetRef="usertask2"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_documentProcess">
+    <bpmndi:BPMNPlane bpmnElement="documentProcess" id="BPMNPlane_documentProcess">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1.0" y="202.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="71.0" width="121.0" x="110.0" y="184.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="530.0" y="202.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="71.0" width="121.0" x="290.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow58" id="BPMNEdge_flow58">
+        <omgdi:waypoint x="36.0" y="219.0"></omgdi:waypoint>
+        <omgdi:waypoint x="110.0" y="219.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow59" id="BPMNEdge_flow59">
+        <omgdi:waypoint x="411.0" y="215.0"></omgdi:waypoint>
+        <omgdi:waypoint x="530.0" y="219.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow60" id="BPMNEdge_flow60">
+        <omgdi:waypoint x="231.0" y="219.0"></omgdi:waypoint>
+        <omgdi:waypoint x="290.0" y="215.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

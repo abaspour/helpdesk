@@ -1,0 +1,225 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+	<changeSet author="Mehdi" id="1566642121966-1">
+		<createSequence sequenceName="seq_request_attachment_id"/>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-2">
+		<createSequence sequenceName="seq_support_request_id"/>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-3">
+		<createSequence sequenceName="seq_system_type_id"/>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-4">
+		<createSequence sequenceName="seq_system_type_user_id"/>
+	</changeSet>
+
+	<changeSet author="Mehdi" id="1566642121966-5">
+		<createTable tableName="tbl_request_attachment">
+			<column name="id" type="NUMBER(19, 0)">
+				<constraints primaryKey="true" primaryKeyName="tbl_request_attachmentPK"/>
+			</column>
+			<column name="c_created_by" type="VARCHAR2(255 CHAR)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="d_created_date" type="TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="c_last_modified_by" type="VARCHAR2(255 CHAR)"/>
+			<column name="d_last_modified_date" type="TIMESTAMP"/>
+			<column name="n_version" type="NUMBER(10, 0)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="c_attach_description" type="VARCHAR2(255 CHAR)"/>
+			<column name="c_attach_extension" type="VARCHAR2(255 CHAR)"/>
+			<column name="c_attach_file_name" type="VARCHAR2(255 CHAR)"/>
+			<column name="n_attach_size" type="NUMBER(19, 0)"/>
+			<column name="f_oa_user" type="NUMBER(19, 0)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="c_request_status" type="VARCHAR2(255 CHAR)"/>
+			<column name="f_support_request" type="NUMBER(19, 0)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-6">
+		<createTable tableName="tbl_support_request">
+			<column name="id" type="NUMBER(19, 0)">
+				<constraints primaryKey="true" primaryKeyName="tbl_support_requestPK"/>
+			</column>
+			<column name="c_created_by" type="VARCHAR2(255 CHAR)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="d_created_date" type="TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="c_last_modified_by" type="VARCHAR2(255 CHAR)"/>
+			<column name="d_last_modified_date" type="TIMESTAMP"/>
+			<column name="n_version" type="NUMBER(10, 0)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="c_attach_extension" type="VARCHAR2(255 CHAR)"/>
+			<column name="c_attach_file_name" type="VARCHAR2(255 CHAR)"/>
+			<column name="c_end_date" type="VARCHAR2(255 CHAR)"/>
+			<column name="f_oa_user" type="NUMBER(19, 0)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="c_request_description" type="VARCHAR2(2000 CHAR)"/>
+			<column name="c_request_result" type="VARCHAR2(2000 CHAR)"/>
+			<column name="c_request_status" type="VARCHAR2(255 CHAR)"/>
+			<column name="c_request_title" type="VARCHAR2(255 CHAR)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="f_system_type" type="NUMBER(19, 0)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-7">
+		<createTable tableName="tbl_system_type">
+			<column name="id" type="NUMBER(19, 0)">
+				<constraints primaryKey="true" primaryKeyName="tbl_system_typePK"/>
+			</column>
+			<column name="c_created_by" type="VARCHAR2(255 CHAR)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="d_created_date" type="TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="c_last_modified_by" type="VARCHAR2(255 CHAR)"/>
+			<column name="d_last_modified_date" type="TIMESTAMP"/>
+			<column name="n_version" type="NUMBER(10, 0)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="c_is_active" type="VARCHAR2(255 CHAR)"/>
+			<column name="f_oa_app" type="VARCHAR2(255 CHAR)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="c_system_type" type="VARCHAR2(255 CHAR)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-8">
+		<createTable tableName="tbl_system_type_user">
+			<column name="id" type="NUMBER(19, 0)">
+				<constraints primaryKey="true" primaryKeyName="tbl_system_type_userPK"/>
+			</column>
+			<column name="c_created_by" type="VARCHAR2(255 CHAR)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="d_created_date" type="TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="c_last_modified_by" type="VARCHAR2(255 CHAR)"/>
+			<column name="d_last_modified_date" type="TIMESTAMP"/>
+			<column name="n_version" type="NUMBER(10, 0)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="c_is_active" type="VARCHAR2(255 CHAR)"/>
+			<column name="f_oa_user" type="NUMBER(19, 0)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="f_system_type" type="NUMBER(19, 0)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="Mehdi" id="1566642121966-9">
+		<addUniqueConstraint columnNames="c_system_type, f_oa_app" constraintName="uc_system_type_systemtype_oa"
+							 tableName="tbl_system_type"/>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-10">
+		<addUniqueConstraint columnNames="f_system_type, f_oa_user" constraintName="uc_system_type_user_username"
+							 tableName="tbl_system_type_user"/>
+	</changeSet>
+
+	<changeSet author="Mehdi" id="1566642121966-11">
+		<addForeignKeyConstraint baseColumnNames="f_oa_user" baseTableName="tbl_request_attachment"
+								 constraintName="requestAttachment2oaUser" deferrable="false" initiallyDeferred="false"
+								 referencedColumnNames="id" referencedTableName="tbl_oa_user" validate="true"/>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-12">
+		<addForeignKeyConstraint baseColumnNames="f_support_request" baseTableName="tbl_request_attachment"
+								 constraintName="requestAttachment2supRequest" deferrable="false"
+								 initiallyDeferred="false" referencedColumnNames="id"
+								 referencedTableName="tbl_support_request" validate="true"/>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-13">
+		<addForeignKeyConstraint baseColumnNames="f_oa_user" baseTableName="tbl_support_request"
+								 constraintName="supportRequest2oaUser" deferrable="false" initiallyDeferred="false"
+								 referencedColumnNames="id" referencedTableName="tbl_oa_user" validate="true"/>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-14">
+		<addForeignKeyConstraint baseColumnNames="f_system_type" baseTableName="tbl_support_request"
+								 constraintName="supportRequest2systemType" deferrable="false" initiallyDeferred="false"
+								 referencedColumnNames="id" referencedTableName="tbl_system_type" validate="true"/>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-15">
+		<addForeignKeyConstraint baseColumnNames="f_oa_user" baseTableName="tbl_system_type_user"
+								 constraintName="sysTypeUser2oaUser" deferrable="false" initiallyDeferred="false"
+								 referencedColumnNames="id" referencedTableName="tbl_oa_user" validate="true"/>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-16">
+		<addForeignKeyConstraint baseColumnNames="f_system_type" baseTableName="tbl_system_type_user"
+								 constraintName="sysTypeUser2sysType" deferrable="false" initiallyDeferred="false"
+								 referencedColumnNames="id" referencedTableName="tbl_system_type" validate="true"/>
+	</changeSet>
+	<changeSet author="Mehdi" id="1566642121966-17">
+		<addForeignKeyConstraint baseColumnNames="f_oa_app" baseTableName="tbl_system_type"
+								 constraintName="systemType2oaApp" deferrable="false" initiallyDeferred="false"
+								 referencedColumnNames="id" referencedTableName="tbl_oa_app" validate="true"/>
+	</changeSet>
+
+
+	<changeSet id="Mehdi" author="1566642121966-18">
+		<createView viewName="view_report"><![CDATA[
+SELECT r.id,
+       r.d_created_date,
+       r.c_created_by,
+       r.d_last_modified_date,
+       r.c_last_modified_by,
+       r.n_version,
+       r.c_end_date,
+       r.c_request_description,
+       r.c_request_result,
+       case
+           when r.c_request_status = '0' then 'چدید'
+           when r.c_request_status = '1' then 'دردست اقدام'
+           when r.c_request_status = '2' then 'پایان'
+           when r.c_request_status = '3' then 'لغوشده'
+           else r.c_request_status
+       end c_request_status,
+       r.c_request_title,
+       s.c_system_type,
+       r.f_oa_user,
+       s.f_oa_app,
+       c_title,
+       u.c_first_name,
+       u.c_last_name,
+       to_char(r.d_created_date, 'yyyy/mm/dd HH24:MI:SS', 'nls_calendar=persian')       created_date,
+       to_char(r.d_last_modified_date, 'yyyy/mm/dd HH24:MI:SS', 'nls_calendar=persian') modified_date,
+       to_char(att.d_created_date, 'yyyy/mm/dd HH24:MI:SS', 'nls_calendar=persian')     first_reply_date,
+       u_att.c_first_name                                                               reply_first_name,
+       u_att.c_last_name                                                                reply_last_name,
+       r.c_created_by                                                                   request_username,
+       r.f_system_type
+FROM tbl_support_request r
+         join tbl_system_type s on s.id = r.f_system_type
+         join tbl_oa_app a on a.id = s.f_oa_app
+         join tbl_oa_user u on u.id = r.f_oa_user
+         left join (select min(t.id) min_id, t.f_support_request, t.f_oa_user pasgo
+                    from tbl_request_attachment t
+                    group by id, t.f_support_request, t.f_oa_user) tt
+                    on tt.f_support_request = r.id and tt.pasgo != u.id
+         left join tbl_request_attachment att on att.id = min_id
+         left join tbl_oa_user u_att on u_att.id = pasgo
+]]></createView>
+	</changeSet>
+
+</databaseChangeLog>

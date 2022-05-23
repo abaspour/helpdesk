@@ -1,0 +1,16 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+				   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+	<changeSet author="Mehdi" id="1596644521423-1">
+		<insert tableName="tbl_oa_permission">
+        	<column name="id" valueSequenceNext="seq_oa_permission_id"/>
+        	<column name="c_code" value="b_settings"/>
+        	<column name="c_title" value="نمایش منو تنظیمات"/>
+        	<column name="f_app" value="HelpDesk"/>
+        </insert>
+	</changeSet>
+
+</databaseChangeLog>
